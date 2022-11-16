@@ -5,6 +5,8 @@ How to run:
 
 git clone https://github.com/Thodoris-Rizoulis/AMD.git
 
+open AMD folder
+
 git checkout master
 
 cd into backend folder
