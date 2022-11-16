@@ -1,8 +1,7 @@
 # AMD
 Routee-OpenWeather.
 
-How to run:
-
+#How to run:
 git clone https://github.com/Thodoris-Rizoulis/AMD.git
 
 cd AMD folder
