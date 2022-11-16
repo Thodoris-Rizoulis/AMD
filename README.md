@@ -1,2 +1,0 @@
-# AMD
-Routee-OpenWeather.
