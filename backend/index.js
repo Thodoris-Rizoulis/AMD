@@ -31,7 +31,7 @@ app.get("/amd-assesment-api/validate", (req, res) => {
       authorization: `Bearer ${routeeAccessToken}`,
       "content-type": "application/json",
     },
-    body: JSON.stringify({ to: req.query.number }),
+    body: JSON.stringify({ to: "+" + req.query.number }),
   })
     .then((response) => response.json())
     .then((data) => {
