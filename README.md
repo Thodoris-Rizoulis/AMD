@@ -2,11 +2,9 @@
 
 How to run:
 
-git clone https://github.com/Thodoris-Rizoulis/AMD.git
+git clone -b master https://github.com/Thodoris-Rizoulis/AMD.git
 
 cd AMD folder
-
-git checkout master
 
 cd into backend folder
 
