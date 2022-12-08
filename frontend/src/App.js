@@ -24,7 +24,7 @@ export default function App() {
 
   function validateNumber() {
     //API call to backend to check if number is valid
-    fetch(`amd-assesment-api/validate?number=${number.current.value}`)
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/amd-assesment-api/validate?number=${number.current.value}`)
       .then((response) => response.json())
       .then((status) => {
         if (status === 200) setMyInterval();
@@ -50,7 +50,7 @@ export default function App() {
 
   function fetchTemp() {
     //Fetch temperature
-    fetch(`amd-assesment-api?city=${city.current.value}&number=${number.current.value}`)
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/amd-assesment-api?city=${city.current.value}&number=${number.current.value}`)
       .then((response) => response.json())
       .then((data) => {
         if (data !== 404) {
@@ -75,6 +75,8 @@ export default function App() {
           <div className="my-2">
             <label className="block text-xs font-poppinsFont text-[#1c1d1f] font-medium mb-2">City</label>
             <input
+              //disabled input on 1st message
+              disabled={temps.length > 0}
               //hold city referense
               ref={city}
               // Set city error to false on city input focus in case there is one
@@ -89,6 +91,8 @@ export default function App() {
           <div className="mb-8 mt-4">
             <label className="block text-xs font-poppinsFont text-[#1c1d1f] font-medium">Mobile Number</label>
             <input
+              //disabled input on 1st message
+              disabled={temps.length > 0}
               //hold number referense
               ref={number}
               // Set number error to false on number input focus in case there is one

@@ -1,9 +1,11 @@
 import fetch from "node-fetch";
 import express, { json } from "express";
 import * as dotenv from "dotenv/config";
+import cors from "cors";
 
 var routeeAccessToken;
 const app = express();
+app.use(cors());
 app.use(express.json());
 
 //Exchange Routee APP KEYS for Access Token
@@ -64,7 +66,7 @@ app.get("/amd-assesment-api", (req, res) => {
             authorization: `Bearer ${routeeAccessToken}`,
             "content-type": "application/json",
           },
-          body: JSON.stringify({ body: "A new game has been posted to the MindPuzzle. Check it out", to: req.query.number, from: "amdTelecom" }),
+          body: JSON.stringify({ body: "For 10 minutes you will receive a message every minute. Don't close the application!", to: req.query.number, from: "AMDTelecom" }),
         }),
       ]).then(([weatherResponse, SMSResponse]) =>
         Promise.all([weatherResponse.json(), SMSResponse.json()]).then(([weatherData, SMSData]) => {
@@ -80,6 +82,6 @@ app.get("/amd-assesment-api", (req, res) => {
 });
 
 //Starting server localy on port 3000
-app.listen(3000, function () {
+app.listen(process.env.PORT, function () {
   console.log("Server started on port 3000");
 });
