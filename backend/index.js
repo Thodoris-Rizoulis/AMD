@@ -26,7 +26,7 @@ fetch("https://auth.routee.net/oauth/token?grant_type=client_credentials", {
   });
 
 //Call Routee's Number Validator
-app.get("/amd-assesment-api/validate", (req, res) => {
+app.get("/routee-weather-api/validate", (req, res) => {
   fetch("https://connect.routee.net/numbervalidator", {
     method: "POST",
     headers: {
@@ -50,7 +50,7 @@ app.get("/amd-assesment-api/validate", (req, res) => {
     });
 });
 
-app.get("/amd-assesment-api", (req, res) => {
+app.get("/routee-weather-api", (req, res) => {
   // Try to call Open Weather API with the given city and take lat and lon parameters
   fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${req.query.city}&limit=1&appid=${process.env.WEATHER_APP_ID}`)
     .then((locationResponse) => locationResponse.json())
