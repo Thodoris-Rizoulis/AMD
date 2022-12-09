@@ -24,7 +24,7 @@ export default function App() {
 
   function validateNumber() {
     //API call to backend to check if number is valid
-    fetch(`${process.env.REACT_APP_BACKEND_URL}/amd-assesment-api/validate?number=${number.current.value}`)
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/routee-weather-api/validate?number=${number.current.value}`)
       .then((response) => response.json())
       .then((status) => {
         if (status === 200) setMyInterval();
@@ -50,7 +50,7 @@ export default function App() {
 
   function fetchTemp() {
     //Fetch temperature
-    fetch(`${process.env.REACT_APP_BACKEND_URL}/amd-assesment-api?city=${city.current.value}&number=${number.current.value}`)
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/routee-weather-api?city=${city.current.value}&number=${number.current.value}`)
       .then((response) => response.json())
       .then((data) => {
         if (data !== 404) {
