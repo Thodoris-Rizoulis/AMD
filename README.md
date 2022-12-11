@@ -1,6 +1,13 @@
 # Routee-OpenWeather.
 
-How to run:
+LIVE:
+http://routee-weather.rizoulis.online/
+
+**Possible delays are due to low specs server deployed**
+
+OR
+
+Run by yourself:
 
 git clone -b master https://github.com/Thodoris-Rizoulis/AMD.git
 
@@ -12,28 +19,26 @@ npm install
 
 create .env file and add below fields:
 
-ROUTEE_APP_ID="your_routee's_account_app_id"
+ROUTEE_APP_ID="your_routee_app_id"
 
-ROUTEE_APP_SECRET="your_routee's_account_app_secret"
+ROUTEE_APP_SECRET="your_routee_app_secret"
 
-WEATHER_APP_ID="your_openweather_account_app_id"
+WEATHER_APP_ID="your_openweather_app_id"
+
+PORT=3000
 
 node index.js
 
-open a new terminal tab
+open new terminal 
 
 cd into frontend folder
 
 npm install
 
-Note:
+create .env file and add below fields:
 
-Backend runs by default on 3000 port
+PORT=3001
 
-In case something else is running on this port on your machine
-
-go to frontend -> package.json -> edit the proxy field with the corrent port to avoid CORS issues
+REACT_APP_BACKEND_URL="http://localhost:3000/"
 
 npm start
-
-press yes in case "Would you like to run the app on another port instead?" appear
