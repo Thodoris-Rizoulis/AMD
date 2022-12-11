@@ -6,7 +6,7 @@ import cors from "cors";
 var routeeAccessToken;
 const app = express();
 app.use(cors({
- origin: "http://routee-weather.rizoulis.online",
+ origin: process.env.FRONTEND_URL,
  methods: ["GET"],
  credentials: true
 }));
