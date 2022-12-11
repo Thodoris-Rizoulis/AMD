@@ -5,7 +5,11 @@ import cors from "cors";
 
 var routeeAccessToken;
 const app = express();
-app.use(cors());
+app.use(cors({
+ origin: "http://routee-weather.rizoulis.online",
+ methods: ["GET"],
+ credentials: true
+}));
 app.use(express.json());
 
 //Exchange Routee APP KEYS for Access Token
@@ -26,7 +30,7 @@ fetch("https://auth.routee.net/oauth/token?grant_type=client_credentials", {
   });
 
 //Call Routee's Number Validator
-app.get("/routee-weather-api/validate", (req, res) => {
+app.get("/validate", (req, res) => {
   fetch("https://connect.routee.net/numbervalidator", {
     method: "POST",
     headers: {
@@ -50,7 +54,7 @@ app.get("/routee-weather-api/validate", (req, res) => {
     });
 });
 
-app.get("/routee-weather-api", (req, res) => {
+app.get("/", (req, res) => {
   // Try to call Open Weather API with the given city and take lat and lon parameters
   fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${req.query.city}&limit=1&appid=${process.env.WEATHER_APP_ID}`)
     .then((locationResponse) => locationResponse.json())
