@@ -39,6 +39,6 @@ create .env file and add below fields:
 
 PORT=3001
 
-REACT_APP_BACKEND_URL="http://localhost:3000/"
+REACT_APP_BACKEND_URL="http://localhost:3000"
 
 npm start
