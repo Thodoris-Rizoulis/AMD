@@ -25,6 +25,8 @@ ROUTEE_APP_SECRET="your_routee_app_secret"
 
 WEATHER_APP_ID="your_openweather_app_id"
 
+FRONTEND_URL="http://localhost:3001"
+
 PORT=3000
 
 node index.js
@@ -39,6 +41,6 @@ create .env file and add below fields:
 
 PORT=3001
 
-REACT_APP_BACKEND_URL="http://localhost:3000/"
+REACT_APP_BACKEND_URL="http://localhost:3000"
 
 npm start
