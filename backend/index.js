@@ -2,15 +2,24 @@ import fetch from "node-fetch";
 import express, { json } from "express";
 import * as dotenv from "dotenv/config";
 import cors from "cors";
+import path from "path";
+import { fileURLToPath } from "url";
+
+const __filename = fileURLToPath(import.meta.url);
+
+const __dirname = path.dirname(__filename);
 
 var routeeAccessToken;
 const app = express();
-app.use(cors({
- origin: "http://routee-weather.rizoulis.online",
- methods: ["GET"],
- credentials: true
-}));
+app.use(
+  cors({
+    origin: process.env.FRONTEND_URL,
+    methods: ["GET"],
+    credentials: true,
+  })
+);
 app.use(express.json());
+app.use(express.static(path.join(__dirname, "../frontend/build")));
 
 //Exchange Routee APP KEYS for Access Token
 fetch("https://auth.routee.net/oauth/token?grant_type=client_credentials", {
@@ -30,7 +39,7 @@ fetch("https://auth.routee.net/oauth/token?grant_type=client_credentials", {
   });
 
 //Call Routee's Number Validator
-app.get("/validate", (req, res) => {
+app.get("/api/validate", (req, res) => {
   fetch("https://connect.routee.net/numbervalidator", {
     method: "POST",
     headers: {
@@ -54,7 +63,7 @@ app.get("/validate", (req, res) => {
     });
 });
 
-app.get("/", (req, res) => {
+app.get("/api", (req, res) => {
   // Try to call Open Weather API with the given city and take lat and lon parameters
   fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${req.query.city}&limit=1&appid=${process.env.WEATHER_APP_ID}`)
     .then((locationResponse) => locationResponse.json())
@@ -83,6 +92,10 @@ app.get("/", (req, res) => {
       //Return 404 to handle city error
       res.send(JSON.stringify(404));
     });
+});
+
+app.get("/*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../frontend/build/index.html"));
 });
 
 //Starting server localy on port 3000

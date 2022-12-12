@@ -7,7 +7,7 @@ export default function App() {
   const city = useRef(null);
   //Number refernce
   const number = useRef(null);
-    //Chart and Table data
+  //Chart and Table data
   const [temps, setTemps] = useState([]);
   //State of given invalid number
   const [numberError, setNumberError] = useState(false);
@@ -24,7 +24,7 @@ export default function App() {
 
   function validateNumber() {
     //API call to backend to check if number is valid
-    fetch(`${process.env.REACT_APP_BACKEND_URL}/validate?number=${number.current.value}`)
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/api/validate?number=${number.current.value}`)
       .then((response) => response.json())
       .then((status) => {
         if (status === 200) setMyInterval();
@@ -50,7 +50,7 @@ export default function App() {
 
   function fetchTemp() {
     //Fetch temperature
-    fetch(`${process.env.REACT_APP_BACKEND_URL}?city=${city.current.value}&number=${number.current.value}`)
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/api?city=${city.current.value}&number=${number.current.value}`)
       .then((response) => response.json())
       .then((data) => {
         if (data !== 404) {
